@@ -19,7 +19,7 @@ public class slider : MonoBehaviour
     void OnMouseOver() {
 
         if(Input.GetMouseButton(0)){
-            transform.position += new Vector3(Input.GetAxisRaw("Mouse X"),0f,0f);
+            transform.Translate(new Vector3(Input.GetAxisRaw("Mouse X"),0f,0f));
         }
 
     }
