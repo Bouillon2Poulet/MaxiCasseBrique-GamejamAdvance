@@ -6,6 +6,8 @@ public class brick : MonoBehaviour
 {
 
     public int HP;
+    public Sprite[] list_sprites;
+
     private int maxHP;
     public int power;
 
@@ -13,6 +15,7 @@ public class brick : MonoBehaviour
     void Start()
     {
         maxHP = HP;
+        GetComponent<SpriteRenderer>().sprite = list_sprites[HP-1];
     }
 
     // Update is called once per frame
@@ -24,9 +27,9 @@ public class brick : MonoBehaviour
     }
 
     public void hit_brick() {
-        Color actual_color =  GetComponent<SpriteRenderer>().color;
-        GetComponent<SpriteRenderer>().color = actual_color*(1f)/(maxHP+1-get_HP());
         HP--;
+        GetComponent<SpriteRenderer>().sprite = list_sprites[HP-1];
+
 
     }
 
