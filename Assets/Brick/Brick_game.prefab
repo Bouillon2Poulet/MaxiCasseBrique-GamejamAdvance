@@ -543,7 +543,7 @@ Transform:
   m_GameObject: {fileID: 514733692406004390}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.108808756, y: -4.78, z: -0.012901574}
-  m_LocalScale: {x: 4.9, y: 0.69273204, z: 2.8159838}
+  m_LocalScale: {x: 8.33, y: 8.33, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 514733692434155954}
@@ -590,7 +590,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9525f2839ab96fe4c8365d2de8d0e462, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -618,14 +618,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.61, y: 0.05}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.6076673, y: 0.05055572}
   m_EdgeRadius: 0
 --- !u!50 &514733692406004389
 Rigidbody2D:
@@ -661,7 +661,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 9
-  max_displacement: 9.5
+  max_displacement: 9.3
 --- !u!1 &514733692434155955
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nb_ball: 5
   ball_go: {fileID: 7780469241774461804, guid: 35ea1e4583d256a40853be0b39fd9c70, type: 3}
-  scale_ball_UI: 2
+  scale_ball_UI: 1
   is_pause: 0
   position_ball_UI: {fileID: 194522952}
   spacing_UI: 1
@@ -890,7 +890,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.49, y: -7.15}
+  m_AnchoredPosition: {x: 10.35, y: -7.73}
   m_SizeDelta: {x: 8.831, y: 2.6673}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5716180035654409028
@@ -923,8 +923,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 00:00:00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: c97f30517677b354e9497c7fb9a615f3, type: 2}
+  m_sharedMaterial: {fileID: -7665264314884369910, guid: c97f30517677b354e9497c7fb9a615f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -932,13 +932,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topLeft: {r: 0, g: 0.7218666, b: 1, a: 1}
+    topRight: {r: 0, g: 0.2926516, b: 0.990566, a: 1}
+    bottomLeft: {r: 0.50980395, g: 0.854902, b: 0.9333334, a: 1}
+    bottomRight: {r: 0.078431375, g: 0.039215688, b: 0.49803925, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -6267,6 +6267,10 @@ PrefabInstance:
     - target: {fileID: 7780469241774461804, guid: 35ea1e4583d256a40853be0b39fd9c70, type: 3}
       propertyPath: m_Name
       value: ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 7780469241774461806, guid: 35ea1e4583d256a40853be0b39fd9c70, type: 3}
+      propertyPath: speed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7780469241774461807, guid: 35ea1e4583d256a40853be0b39fd9c70, type: 3}
       propertyPath: m_RootOrder
