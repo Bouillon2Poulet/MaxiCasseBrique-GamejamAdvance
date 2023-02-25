@@ -30,7 +30,6 @@ public class ball_movement : MonoBehaviour
         if(!is_pause && rb2d.velocity.magnitude >=0.01f) angle = Mathf.PI*Vector2.SignedAngle(Vector2.right,rb2d.velocity)/180f;
         rb2d.velocity = current_speed ==0f ? Vector2.zero : new Vector2(Mathf.Cos(angle)*speed,Mathf.Sin(angle)*speed);
 
-        // Debug.Log(rb2d.velocity + " // " + angle);
         lastVel = rb2d.velocity;
     }
 
@@ -61,7 +60,6 @@ public class ball_movement : MonoBehaviour
         }
     }
     public void impulse_ball(){
-        //Debug.Log("IMPULSION");
         rb2d.velocity = new Vector2(Mathf.Cos(angle)*speed,Mathf.Sin(angle)*speed);
     }
 

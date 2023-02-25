@@ -16,7 +16,6 @@ public class timer : MonoBehaviour
     void Start()
     {
         GetComponent<TMPro.TextMeshProUGUI>().text ="00:00:00";
-        Debug.Log(minutes + ":" + seconds +":"+milliseconds);
         chrono = 0f;
     }
 

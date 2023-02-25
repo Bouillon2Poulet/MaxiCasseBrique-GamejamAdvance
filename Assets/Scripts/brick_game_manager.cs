@@ -31,11 +31,9 @@ public class brick_game_manager : MonoBehaviour
     void Update()
     {
         number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
-        Debug.Log(number_of_brick_remaining);
 
         if(number_of_brick_remaining ==0) actual_game_state = game_state.win;
 
-        //Debug.Log(actual_game_state + " // " + is_pause);
         switch(actual_game_state){
             case game_state.launch :
                 is_pause = true;
@@ -75,11 +73,10 @@ public class brick_game_manager : MonoBehaviour
     }
 
     void launch_game(){
-
+        // Vector2 mousePos = Input.mousePosition;
     }
 
     public void loose_ball(){
-        //Debug.Log("loose a ball");
         nb_ball--;
 
         GameObject go_to_hide = liste_ball_to_draw[nb_ball];
@@ -119,7 +116,7 @@ public class brick_game_manager : MonoBehaviour
             go.AddComponent<SpriteRenderer>();
             SpriteRenderer spr = go.GetComponent<SpriteRenderer>();
             spr.sprite = ball_go.GetComponent<SpriteRenderer>().sprite;
-            spr.sortingOrder = 10;
+            spr.sortingOrder = 2;
             go.transform.localScale = ball_go.transform.localScale*scale_ball_UI;
             go.transform.position = position_ball_UI.position;
             go.transform.parent = transform;
