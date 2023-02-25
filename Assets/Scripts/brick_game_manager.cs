@@ -127,4 +127,7 @@ public class brick_game_manager : MonoBehaviour
     }
 
 
+    public void start_game(){
+        if(actual_game_state != game_state.game) actual_game_state = game_state.game;
+    }
 }
