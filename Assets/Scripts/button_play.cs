@@ -31,6 +31,7 @@ public class button_play : MonoBehaviour
         }
         if(Input.GetMouseButtonUp(0)){
             StartCoroutine(startGame());
+            transform.parent.parent.GetComponent<brickGameThemeAudio>().gameStarted = true;
         }
     }
 
