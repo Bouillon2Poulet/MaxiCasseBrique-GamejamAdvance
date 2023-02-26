@@ -11,7 +11,7 @@ GetComponent<SpriteRenderer>().color = Color.green;
 }
 
 private void OnMouseEnter() {
-Debug.Log("enter");
+// Debug.Log("enter");
 // cloner le Material du SpriteRenderer pour éviter de modifier le Material du parent
 GetComponent<SpriteRenderer>().material = new Material(GetComponent<SpriteRenderer>().material);
 GetComponent<SpriteRenderer>().color = Color.blue;
@@ -27,7 +27,7 @@ GetComponent<SpriteRenderer>().color = Color.green;
     {
         if(Input.GetMouseButtonUp(0))
         {
-            Debug.Log("click");
+            // Debug.Log("click");
             Application.OpenURL("https://miamo.fr/");
         }
     }

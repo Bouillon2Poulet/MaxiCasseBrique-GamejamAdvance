@@ -12,10 +12,15 @@ public class harambe_game : MonoBehaviour
     void Start()
     {
         Tiles = GetComponentsInChildren<tile>();
+
+        List<int> occupied_id = new List<int>();
+
+
         init_position_id();
         init_position_from_id();
         init_pos = transform;
-        
+
+    
     }
 
     // Update is called once per frame
@@ -23,8 +28,10 @@ public class harambe_game : MonoBehaviour
     {
         foreach (tile t in Tiles)
         {
-            Debug.Log(t.position_id + " // " + t.win_id);
+            // Debug.Log(t.position_id + " // " + t.win_id);
         }
+        
+        check_win();
     }
 
     public bool isTheEmptyTile(int position_id) {
@@ -70,4 +77,13 @@ public class harambe_game : MonoBehaviour
         }
     }
 
+    void check_win () {
+        foreach (tile t in Tiles) {
+            if (t.position_id != t.win_id){
+                return ;
+            }
+        }
+        Debug.Log("win");
+        Destroy(transform.parent.gameObject,0.8f);
+    }
 }

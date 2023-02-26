@@ -11,7 +11,7 @@ GetComponent<SpriteRenderer>().color = Color.red;
 }
 
 private void OnMouseEnter() {
-Debug.Log("enter");
+// Debug.Log("enter");
 // cloner le Material du SpriteRenderer pour éviter de modifier le Material du parent
 GetComponent<SpriteRenderer>().material = new Material(GetComponent<SpriteRenderer>().material);
 GetComponent<SpriteRenderer>().color = new Color(1f,1f,1f);

@@ -28,6 +28,7 @@ public class brick : MonoBehaviour
 
     public void hit_brick() {
         HP--;
+        if (HP == 0) return;
         GetComponent<SpriteRenderer>().sprite = list_sprites[HP-1];
 
 

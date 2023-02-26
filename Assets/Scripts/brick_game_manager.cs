@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class brick_game_manager : MonoBehaviour
 {
-    enum game_state{game_over,launch,game,pause,restart,win};
-    private game_state actual_game_state;
+    public enum game_state{game_over,launch,game,pause,restart,win};
+    public game_state actual_game_state;
     public int nb_ball;
     private int number_of_brick_remaining;
 
@@ -28,7 +28,12 @@ public class brick_game_manager : MonoBehaviour
         actual_game_state = game_state.launch;
 
     }
+    IEnumerator wait_to_launch(){
+        yield return new WaitForSeconds(3f);
+        actual_game_state = game_state.game;
+        GetComponentInChildren<ball_movement>().impulse_ball();
 
+    }
     // Update is called once per frame
     void Update()
     {
@@ -39,10 +44,7 @@ public class brick_game_manager : MonoBehaviour
         switch(actual_game_state){
             case game_state.launch :
                 is_pause = true;
-                if(Input.GetKeyDown(KeyCode.Space)) {
-                    actual_game_state = game_state.game;
-                    GetComponentInChildren<ball_movement>().impulse_ball();
-                }
+                StartCoroutine(wait_to_launch());
                 break;
 
             case game_state.game :
@@ -77,12 +79,9 @@ public class brick_game_manager : MonoBehaviour
                 break;
         }
 
-        Debug.Log(nb_ball + " // " + liste_ball_to_draw.Count);
+        // Debug.Log(nb_ball + " // " + liste_ball_to_draw.Count);
     }
 
-    void launch_game(){
-        // Vector2 mousePos = Input.mousePosition;
-    }
 
     public void loose_ball(){
         nb_ball--;
