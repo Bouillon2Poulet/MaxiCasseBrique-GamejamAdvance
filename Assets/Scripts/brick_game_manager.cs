@@ -25,6 +25,8 @@ public class brick_game_manager : MonoBehaviour
 
     public GameObject game_over_menu;
 
+    public GameObject win_menu;
+
     private float time_pause_remaining;
     public Transform position_ball_UI;
     public float spacing_UI = 0.2f;
@@ -43,8 +45,8 @@ public class brick_game_manager : MonoBehaviour
 
         number_of_brick_initial = GetComponentsInChildren<brick>().Length;
         number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
-
         game_over_menu.SetActive(false);
+        win_menu.SetActive(false);
 
         init_nb_ball=nb_ball;
 
@@ -61,10 +63,14 @@ public class brick_game_manager : MonoBehaviour
     {
         // Debug.Log(actual_game_state + " // " + game_over_menu.GetComponentInChildren<SpriteRenderer>().sortingOrder) ;
         number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
-        //Debug.Log(number_of_brick_remaining);
+        Debug.Log(number_of_brick_remaining);
         
 
-        if(number_of_brick_remaining ==0) actual_game_state = game_state.win;
+        if(number_of_brick_remaining == 0) {
+            is_pause = true;
+            actual_game_state = game_state.win;
+            win_menu.SetActive(true);
+        }
 
         switch(actual_game_state){
             case game_state.launch :

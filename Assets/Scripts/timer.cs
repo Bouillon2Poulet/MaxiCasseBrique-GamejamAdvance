@@ -6,11 +6,13 @@ using TMPro;
 public class timer : MonoBehaviour
 {
 
-    private float chrono; 
+    public float chrono; 
 
-    private int milliseconds =0 ;
-    private int minutes =0;
-    private int seconds =0;
+    public int milliseconds =0 ;
+    public int minutes =0;
+    public int seconds =0;
+
+    public string text;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +37,7 @@ public class timer : MonoBehaviour
         }
 
         GetComponent<TMPro.TextMeshProUGUI>().text = minutes.ToString("D2") + ":" + seconds.ToString("D2") +":"+milliseconds.ToString("D2");
-        
+        text =  minutes.ToString("D2") + ":" + seconds.ToString("D2") +":"+milliseconds.ToString("D2");
     }
 }
 
