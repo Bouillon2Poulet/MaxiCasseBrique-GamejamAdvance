@@ -130,6 +130,17 @@ public class window_manager : MonoBehaviour
         create_window((prefabs)(type), new Vector3(x,y,0f));
 
     }
+
+    public void destroy_all_popup(){
+        for (int i = 0; i< transform.childCount; i++)
+        {
+            GameObject go = transform.GetChild(i).gameObject;
+            if(go.name != "Brick_game(Clone)" && go.name !="start_pos_logos") Destroy(go);
+        }
+        windows_on_screen.RemoveRange(1,windows_on_screen.Count-2);
+        logos_on_screen.RemoveRange(1,windows_on_screen.Count-2);
+
+    }
 }
 
 
