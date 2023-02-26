@@ -28,7 +28,6 @@ public class harambe_game : MonoBehaviour
     {
         foreach (tile t in Tiles)
         {
-            // Debug.Log(t.position_id + " // " + t.win_id);
         }
         
         check_win();
@@ -83,7 +82,6 @@ public class harambe_game : MonoBehaviour
                 return ;
             }
         }
-        //Debug.Log("win");
         Destroy(transform.parent.gameObject,0.8f);
     }
 }

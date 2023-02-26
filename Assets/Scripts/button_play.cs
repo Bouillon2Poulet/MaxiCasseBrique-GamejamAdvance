@@ -36,7 +36,6 @@ public class button_play : MonoBehaviour
     }
 
     IEnumerator startGame(){
-        Debug.Log("next");
         yield return new WaitForSeconds(1f);
         GetComponentInParent<brick_game_manager>().start_game();
         Start_menu.SetActive(false);

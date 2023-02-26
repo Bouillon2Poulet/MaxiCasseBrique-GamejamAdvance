@@ -26,7 +26,7 @@ public class window_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("generate_random_window", 10.0f, 3f);
+        InvokeRepeating("generate_random_window", 5.0f, 3f);
 
 
         windows_on_screen = new List<GameObject>();
@@ -128,7 +128,6 @@ public class window_manager : MonoBehaviour
             type = (int) Random.Range(1, prefabs.GetNames(typeof(prefabs)).Length);
         }   // repull while u pull a second harambe
 
-        //Debug.Log(has_harambe);
 
         float x = Random.Range(-5,5);
         float y = Random.Range(-5,4);
@@ -141,10 +140,12 @@ public class window_manager : MonoBehaviour
         for (int i = 0; i< transform.childCount; i++)
         {
             GameObject go = transform.GetChild(i).gameObject;
-            if(go.name != "Brick_game(Clone)" && go.name !="start_pos_logos") Destroy(go);
+            if(go.name != "Brick_game(Clone)" && go.name !="start_pos_of_logos") Destroy(go);
         }
-        windows_on_screen.RemoveRange(1,windows_on_screen.Count-2);
-        logos_on_screen.RemoveRange(1,windows_on_screen.Count-2);
+        if(windows_on_screen.Count >= 2){
+            windows_on_screen.RemoveRange(1,windows_on_screen.Count-2);
+            logos_on_screen.RemoveRange(1,windows_on_screen.Count-2);
+        }
 
     }
 }
