@@ -45,6 +45,14 @@ public class ball_movement : MonoBehaviour
         if(other.gameObject.tag == "Brick"){// brick
             other.gameObject.GetComponent<brick>().hit_brick();
         }
+        
+        if(other.gameObject.tag == "Brick_pause"){// brick
+            other.gameObject.GetComponent<brick_pause>().hit_brick();
+        }
+
+        if(other.gameObject.tag == "Brick_balle"){// brick
+            other.gameObject.GetComponent<brick_balle>().hit_brick();
+        }
 
         if(other.gameObject.layer == 7){// PlayerBar
         // var dir = Vector2.Reflect(lastVel.normalized,other.contacts[0].normal);0

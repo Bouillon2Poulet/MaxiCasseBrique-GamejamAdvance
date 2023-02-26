@@ -15,6 +15,8 @@ public class brick_game_manager : MonoBehaviour
     private List<GameObject> liste_ball_to_draw;
 
     public bool is_pause = true;
+
+    private float time_pause_remaining;
     public Transform position_ball_UI;
     public float spacing_UI = 0.2f;
 
@@ -51,12 +53,18 @@ public class brick_game_manager : MonoBehaviour
                 break;
 
             case game_state.pause :
+                time_pause_remaining -= Time.deltaTime;
+                if(time_pause_remaining <=0f){
+                    time_pause_remaining = 0f;
+                    actual_game_state = game_state.game;
+                }
                 is_pause = true;
                 if(Input.GetKeyDown(KeyCode.Space)){
                     actual_game_state = game_state.game;
                     GetComponentInChildren<ball_movement>().impulse_ball();
 
                 }
+
 
                 break;
 
@@ -69,7 +77,7 @@ public class brick_game_manager : MonoBehaviour
                 break;
         }
 
-        
+        Debug.Log(nb_ball + " // " + liste_ball_to_draw.Count);
     }
 
     void launch_game(){
@@ -126,8 +134,31 @@ public class brick_game_manager : MonoBehaviour
         }
     }
 
+    public void add_ball(){
+        if(nb_ball==liste_ball_to_draw.Count){
+            GameObject go = new GameObject();
+            go.AddComponent<SpriteRenderer>();
+            SpriteRenderer spr = go.GetComponent<SpriteRenderer>();
+            spr.sprite = ball_go.GetComponent<SpriteRenderer>().sprite;
+            spr.sortingOrder = 2;
+            go.transform.localScale = ball_go.transform.localScale*scale_ball_UI;
+            go.transform.position = position_ball_UI.position;
+            go.transform.parent = transform;
+            go.transform.Translate(Vector3.right*liste_ball_to_draw.Count*spacing_UI);
+            liste_ball_to_draw.Add(go);
+        }
+        else {
+            GameObject go_to_show = liste_ball_to_draw[nb_ball];
+            go_to_show.GetComponent<SpriteRenderer>().enabled = true;
+        }
+        nb_ball++;
+    }
 
     public void start_game(){
         if(actual_game_state != game_state.game) actual_game_state = game_state.game;
+    }
+    public void start_pause(float t){
+        time_pause_remaining = t;
+        actual_game_state = game_state.pause;
     }
 }

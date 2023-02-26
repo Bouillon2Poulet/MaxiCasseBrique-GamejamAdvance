@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Brick
+  - Brick_pause
+  - Brick_balle
   layers:
   - Default
   - TransparentFX
