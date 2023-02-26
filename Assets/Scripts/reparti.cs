@@ -2,14 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class button_play : MonoBehaviour
+public class reparti : MonoBehaviour
 {
     public Sprite spr_down;
     public Sprite spr_up;
 
-    public GameObject Start_menu;
-
-
+    public GameObject game_over_menu;
     private void Start() {
     }
 
@@ -30,18 +28,13 @@ public class button_play : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = spr_up;
         }
         if(Input.GetMouseButtonUp(0)){
-            StartCoroutine(startGame());
+            StartCoroutine(restartGame());
             transform.parent.parent.GetComponent<brickGameThemeAudio>().gameStarted = true;
         }
     }
 
-    IEnumerator startGame(){
-        Debug.Log("next");
+    IEnumerator restartGame(){
         yield return new WaitForSeconds(1f);
-        GetComponentInParent<brick_game_manager>().start_game();
-        Start_menu.SetActive(false);
-        yield return new WaitForSeconds(1f);
-        // GetComponentInParent<brick_game_manager>().is_pause = false;
-        
+        Destroy(GetComponentInParent<brick_game_manager>().gameObject);
     }
 }

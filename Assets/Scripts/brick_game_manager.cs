@@ -7,6 +7,8 @@ public class brick_game_manager : MonoBehaviour
     public enum game_state{game_over,launch,game,pause,restart,win};
     public game_state actual_game_state;
     public int nb_ball;
+
+    private int init_nb_ball;
     public int number_of_brick_remaining;
 
     private int number_of_brick_initial;
@@ -44,9 +46,12 @@ public class brick_game_manager : MonoBehaviour
 
         game_over_menu.SetActive(false);
 
+        init_nb_ball=nb_ball;
+
     }
     IEnumerator wait_to_launch(){
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
+        Debug.Log("lauch");
         actual_game_state = game_state.game;
         GetComponentInChildren<ball_movement>().impulse_ball();
 
@@ -54,7 +59,7 @@ public class brick_game_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(actual_game_state + " // " + game_over_menu.GetComponentInChildren<SpriteRenderer>().sortingOrder) ;
+        // Debug.Log(actual_game_state + " // " + game_over_menu.GetComponentInChildren<SpriteRenderer>().sortingOrder) ;
         number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
         //Debug.Log(number_of_brick_remaining);
         
@@ -64,7 +69,6 @@ public class brick_game_manager : MonoBehaviour
         switch(actual_game_state){
             case game_state.launch :
                 is_pause = true;
-                StartCoroutine(wait_to_launch());
                 break;
 
             case game_state.game :
@@ -191,7 +195,7 @@ public class brick_game_manager : MonoBehaviour
     }
 
     public void start_game(){
-        if(actual_game_state != game_state.game) actual_game_state = game_state.game;
+        if(actual_game_state != game_state.game) StartCoroutine(wait_to_launch());
     }
     public void start_pause(float t){
         time_pause_remaining = t;

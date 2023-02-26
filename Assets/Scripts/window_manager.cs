@@ -11,6 +11,8 @@ public class window_manager : MonoBehaviour
 
     public Transform start_pos_logo;
 
+    
+
     public float offset_logo = 1f;
     private bool has_harambe = false;
 
@@ -24,7 +26,7 @@ public class window_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("generate_random_window", 2.0f, 3f);
+        InvokeRepeating("generate_random_window", 10.0f, 3f);
 
 
         windows_on_screen = new List<GameObject>();
@@ -58,6 +60,10 @@ public class window_manager : MonoBehaviour
         //             }
         //         }
         //     }
+
+        if (windows_on_screen[0] == null) {
+            windows_on_screen[0] = Instantiate(get_window_prefab(prefabs.casse_brique), Vector3.zero, new Quaternion(0f,0f,0f,0f));
+        }
 
        
 

@@ -97,6 +97,7 @@ public class ball_movement : MonoBehaviour
         Debug.Log(piste);
     }
     public void impulse_ball(){
+        Debug.Log("push");
         rb2d.velocity = new Vector2(Mathf.Cos(angle)*speed,Mathf.Sin(angle)*speed);
     }
 
