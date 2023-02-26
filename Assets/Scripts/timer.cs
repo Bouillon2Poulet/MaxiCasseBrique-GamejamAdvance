@@ -22,7 +22,8 @@ public class timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GetComponentInParent<brick_game_manager>().is_pause) {
+        brick_game_manager bgm = GetComponentInParent<brick_game_manager>();
+        if (bgm.actual_game_state == brick_game_manager.game_state.game) {
                 
             milliseconds = (int) (chrono % 100) ;
             seconds = (int) (chrono/100) % 60 ;

@@ -7,7 +7,12 @@ public class brick_game_manager : MonoBehaviour
     public enum game_state{game_over,launch,game,pause,restart,win};
     public game_state actual_game_state;
     public int nb_ball;
-    private int number_of_brick_remaining;
+    public int number_of_brick_remaining;
+
+    private int number_of_brick_initial;
+
+    private bool level2;
+    private bool level3;
 
     public GameObject ball_go;
     public float scale_ball_UI = 2f;
@@ -27,6 +32,11 @@ public class brick_game_manager : MonoBehaviour
         initiate_ball_UI();
         actual_game_state = game_state.launch;
 
+        level2 = false;
+
+        number_of_brick_initial = GetComponentsInChildren<brick>().Length;
+        number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
+
     }
     IEnumerator wait_to_launch(){
         yield return new WaitForSeconds(3f);
@@ -38,6 +48,8 @@ public class brick_game_manager : MonoBehaviour
     void Update()
     {
         number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
+        //Debug.Log(number_of_brick_remaining);
+        
 
         if(number_of_brick_remaining ==0) actual_game_state = game_state.win;
 
@@ -51,6 +63,17 @@ public class brick_game_manager : MonoBehaviour
                 is_pause = false;
                 if(Input.GetKeyDown(KeyCode.Space)){
                     actual_game_state = game_state.pause;
+                }
+
+                if (!level2 && number_of_brick_remaining <= 2*number_of_brick_initial/3){
+                    GetComponentInParent<window_manager>().CancelInvoke();
+                    GetComponentInParent<window_manager>().InvokeRepeating("generate_random_window", 0f, 2.5f);
+                    level2 = true;
+                }
+                if (level2 && !level3 && number_of_brick_remaining <= number_of_brick_initial/3){
+                    GetComponentInParent<window_manager>().CancelInvoke();
+                    GetComponentInParent<window_manager>().InvokeRepeating("generate_random_window", 0f, 2f);
+                    level3 = true;
                 }
                 break;
 
