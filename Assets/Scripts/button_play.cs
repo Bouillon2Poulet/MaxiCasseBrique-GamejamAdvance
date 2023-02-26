@@ -24,14 +24,12 @@ public class button_play : MonoBehaviour
     void OnMouseOver() {
 
         if(Input.GetMouseButton(0)){
-            //Debug.Log("j suis dessuuuuuuuuuus");
             GetComponent<SpriteRenderer>().sprite = spr_down;
         }
         else{
             GetComponent<SpriteRenderer>().sprite = spr_up;
         }
         if(Input.GetMouseButtonUp(0)){
-            //Debug.Log("GOGOGOGOGOG");
             StartCoroutine(startGame());
         }
     }
