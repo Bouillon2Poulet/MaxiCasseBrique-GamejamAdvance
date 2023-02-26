@@ -21,6 +21,8 @@ public class brick_game_manager : MonoBehaviour
 
     public bool is_pause = true;
 
+    public GameObject game_over_menu;
+
     private float time_pause_remaining;
     public Transform position_ball_UI;
     public float spacing_UI = 0.2f;
@@ -31,11 +33,12 @@ public class brick_game_manager : MonoBehaviour
         liste_ball_to_draw = new List<GameObject>();
         initiate_ball_UI();
         actual_game_state = game_state.launch;
-
         level2 = false;
 
         number_of_brick_initial = GetComponentsInChildren<brick>().Length;
         number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
+
+        game_over_menu.SetActive(false);
 
     }
     IEnumerator wait_to_launch(){
@@ -47,6 +50,7 @@ public class brick_game_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log(actual_game_state + " // " + game_over_menu.GetComponentInChildren<SpriteRenderer>().sortingOrder) ;
         number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
         //Debug.Log(number_of_brick_remaining);
         
@@ -61,9 +65,6 @@ public class brick_game_manager : MonoBehaviour
 
             case game_state.game :
                 is_pause = false;
-                if(Input.GetKeyDown(KeyCode.Space)){
-                    actual_game_state = game_state.pause;
-                }
 
                 if (!level2 && number_of_brick_remaining <= 2*number_of_brick_initial/3){
                     GetComponentInParent<window_manager>().CancelInvoke();
@@ -76,6 +77,7 @@ public class brick_game_manager : MonoBehaviour
                     level3 = true;
                 }
                 break;
+
 
             case game_state.pause :
                 time_pause_remaining -= Time.deltaTime;
@@ -107,18 +109,18 @@ public class brick_game_manager : MonoBehaviour
 
 
     public void loose_ball(){
-        nb_ball--;
-
-        GameObject go_to_hide = liste_ball_to_draw[nb_ball];
-        go_to_hide.GetComponent<SpriteRenderer>().enabled = false;
-
-
-
-        if (nb_ball ==0){
+        Debug.Log(nb_ball);
+        if (nb_ball == 0) {
             GetComponentInChildren<ball_movement>().kill();
             actual_game_state = game_state.game_over;
+            game_over_menu.SetActive(true);
+            GetComponentInParent<window_manager>().destroy_all_popup();         
             return;
         }
+        GameObject go_to_hide = liste_ball_to_draw[nb_ball-1];
+        go_to_hide.GetComponentInChildren<SpriteRenderer>().enabled = false;
+        nb_ball--;
+
         actual_game_state = game_state.restart;
         StartCoroutine(next_ball()); 
     }
@@ -135,8 +137,8 @@ public class brick_game_manager : MonoBehaviour
 
 
     void draw_lives(){
-        foreach(GameObject go in liste_ball_to_draw){
-            Instantiate(go,go.transform,transform);
+        for(int i = 0; i<nb_ball; i++){
+            Instantiate(liste_ball_to_draw[i],liste_ball_to_draw[i].transform,transform);
         }
     }
 
@@ -183,4 +185,11 @@ public class brick_game_manager : MonoBehaviour
         time_pause_remaining = t;
         actual_game_state = game_state.pause;
     }
+
+    // IEnumerator game_over(){
+    //     game_over_menu.GetComponent<SpriteRenderer>().sortingOrder = 15;
+
+    //     yield return new WaitForSeconds(1f);
+    //     GetComponentInParent<brick_game_manager>().is_pause = true;
+    // }
 }

@@ -388,7 +388,8 @@ Transform:
   m_LocalPosition: {x: 0, y: -9.419, z: 0}
   m_LocalScale: {x: 8.33, y: 8.33, z: 0}
   m_ConstrainProportionsScale: 1
-  m_Children: [{fileID: 227082684}]
+  m_Children:
+  - {fileID: 227082684}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -550,8 +551,7 @@ MonoBehaviour:
   m_text: 00:00
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c97f30517677b354e9497c7fb9a615f3, type: 2}
-  m_sharedMaterial: {fileID: -7665264314884369910, guid: c97f30517677b354e9497c7fb9a615f3,
-    type: 2}
+  m_sharedMaterial: {fileID: -7665264314884369910, guid: c97f30517677b354e9497c7fb9a615f3, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -740,7 +740,6 @@ MonoBehaviour:
   - {fileID: 9123435370497761141, guid: 7cb1b425e897db64b9971a5f0bdc9c40, type: 3}
   - {fileID: 9123435370497761141, guid: c66c8e92473a6d347a214b996c097aa7, type: 3}
   - {fileID: 9123435370497761141, guid: 9ee1b675591456242bafc7ef046696e6, type: 3}
-  - {fileID: 9123435370497761141, guid: dd9846410de8be04ea90a3f2fd4a2ea8, type: 3}
   - {fileID: 9123435370497761141, guid: dd9846410de8be04ea90a3f2fd4a2ea8, type: 3}
   - {fileID: 9123435370497761141, guid: 8798b0cb3dadb41419e94b8a7fa9da70, type: 3}
   start_pos_logo: {fileID: 1680916460}
