@@ -25,9 +25,13 @@ public class brick_game_manager : MonoBehaviour
     public Transform position_ball_UI;
     public float spacing_UI = 0.2f;
 
+    public AudioClip balldead;
+    public AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         liste_ball_to_draw = new List<GameObject>();
         initiate_ball_UI();
         actual_game_state = game_state.launch;
@@ -108,6 +112,8 @@ public class brick_game_manager : MonoBehaviour
 
     public void loose_ball(){
         nb_ball--;
+        audioSource.clip = balldead;
+        audioSource.Play();
 
         GameObject go_to_hide = liste_ball_to_draw[nb_ball];
         go_to_hide.GetComponent<SpriteRenderer>().enabled = false;

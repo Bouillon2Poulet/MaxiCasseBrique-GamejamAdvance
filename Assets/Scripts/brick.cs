@@ -7,10 +7,12 @@ public class brick : MonoBehaviour
 
     public int HP;
     public Sprite[] list_sprites;
-
+    public AudioClip destroySound;
     private int maxHP;
     public int power;
 
+    bool isDestroyed = false;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -21,17 +23,16 @@ public class brick : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (get_HP()==0) Destroy(gameObject);
-
-        
+        if (get_HP()==0) {
+                Destroy(gameObject);
+        }
     }
 
-    public void hit_brick() {
+    public int hit_brick() {
         HP--;
-        if (HP == 0) return;
+        if (HP == 0) return 0;
         GetComponent<SpriteRenderer>().sprite = list_sprites[HP-1];
-
-
+        return HP;
     }
 
     public int get_HP() {
