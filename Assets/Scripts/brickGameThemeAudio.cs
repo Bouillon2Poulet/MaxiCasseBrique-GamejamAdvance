@@ -7,6 +7,7 @@ public class brickGameThemeAudio : MonoBehaviour
 {
     
     public AudioClip[] themes;
+    public AudioClip intro_sound;
     int randomPick;
     public bool gameStarted;
     bool isOnMenu = true;
@@ -17,6 +18,8 @@ public class brickGameThemeAudio : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        audioSource.clip = intro_sound;
+        audioSource.Play();
         gameStarted=false;
     }
     void Update()

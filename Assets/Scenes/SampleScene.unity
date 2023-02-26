@@ -422,6 +422,7 @@ MonoBehaviour:
   - {fileID: 9123435370497761141, guid: c66c8e92473a6d347a214b996c097aa7, type: 3}
   - {fileID: 9123435370497761141, guid: 9ee1b675591456242bafc7ef046696e6, type: 3}
   - {fileID: 9123435370497761141, guid: dd9846410de8be04ea90a3f2fd4a2ea8, type: 3}
+  - {fileID: 9123435370497761141, guid: 8798b0cb3dadb41419e94b8a7fa9da70, type: 3}
   start_pos_logo: {fileID: 1680916460}
   offset_logo: 1.2
 --- !u!4 &1590572060
