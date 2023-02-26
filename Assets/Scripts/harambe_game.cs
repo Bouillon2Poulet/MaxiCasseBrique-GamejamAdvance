@@ -83,7 +83,7 @@ public class harambe_game : MonoBehaviour
                 return ;
             }
         }
-        Debug.Log("win");
+        //Debug.Log("win");
         Destroy(transform.parent.gameObject,0.8f);
     }
 }

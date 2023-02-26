@@ -5,13 +5,14 @@ using UnityEngine;
 public class window_manager : MonoBehaviour
 {
 
-    public enum prefabs {casse_brique, alarme, couteau, harambe, miamo, poisson, tasse, voiture};
+    public enum prefabs {casse_brique, alarme, couteau, harambe, miamo, poisson, tasse, voiture, appel};
     public GameObject[] windows_prefabs; // casse brique est le premier élément
     public GameObject[] logos_prefabs;
 
     public Transform start_pos_logo;
 
     public float offset_logo = 1f;
+    private bool has_harambe = false;
 
 
     private List<GameObject> windows_on_screen; // in order of display
@@ -31,15 +32,15 @@ public class window_manager : MonoBehaviour
 
         create_window(prefabs.casse_brique, Vector3.zero);
 
-        myKeys = new List<KeyCode>();
-        myKeys.Add(KeyCode.Alpha0);
-        myKeys.Add(KeyCode.Alpha1);
-        myKeys.Add(KeyCode.Alpha2);
-        myKeys.Add(KeyCode.Alpha3);
-        myKeys.Add(KeyCode.Alpha4);
-        myKeys.Add(KeyCode.Alpha5);
-        myKeys.Add(KeyCode.Alpha6);
-        myKeys.Add(KeyCode.Alpha7);
+        // myKeys = new List<KeyCode>();
+        // myKeys.Add(KeyCode.Alpha0);
+        // myKeys.Add(KeyCode.Alpha1);
+        // myKeys.Add(KeyCode.Alpha2);
+        // myKeys.Add(KeyCode.Alpha3);
+        // myKeys.Add(KeyCode.Alpha4);
+        // myKeys.Add(KeyCode.Alpha5);
+        // myKeys.Add(KeyCode.Alpha6);
+        // myKeys.Add(KeyCode.Alpha7);
 
 
     }
@@ -48,15 +49,15 @@ public class window_manager : MonoBehaviour
     {
         check_logo_remove();
 
-        foreach (KeyCode key in myKeys)
-            {
-                if (Input.GetKeyDown(key))
-                {
-                    if (key <= KeyCode.Alpha9 && key >= KeyCode.Alpha0) {
-                        create_window((prefabs)(key-48), Vector3.zero);
-                    }
-                }
-            }
+        // foreach (KeyCode key in myKeys)
+        //     {
+        //         if (Input.GetKeyDown(key))
+        //         {
+        //             if (key <= KeyCode.Alpha9 && key >= KeyCode.Alpha0) {
+        //                 create_window((prefabs)(key-48), Vector3.zero);
+        //             }
+        //         }
+        //     }
 
        
 
@@ -76,6 +77,8 @@ public class window_manager : MonoBehaviour
 
 
     void create_window(prefabs name, Vector3 position){
+        if (name == prefabs.harambe) has_harambe = true;
+
         GameObject new_go = Instantiate(get_window_prefab(name),position,new Quaternion(0f,0f,0f,0f),transform); // create the object
         set_ordering_layer(windows_on_screen.Count, new_go);
         windows_on_screen.Add(new_go);
@@ -114,8 +117,12 @@ public class window_manager : MonoBehaviour
         if (bgm.actual_game_state != brick_game_manager.game_state.game) return;
 
         int type = (int) Random.Range(1, prefabs.GetNames(typeof(prefabs)).Length);
+        
+        while ((prefabs)type == prefabs.harambe && has_harambe){
+            type = (int) Random.Range(1, prefabs.GetNames(typeof(prefabs)).Length);
+        }   // repull while u pull a second harambe
 
-        // Debug.Log(prefabs.GetNames(typeof(prefabs)).Length + " // " + type);
+        //Debug.Log(has_harambe);
 
         float x = Random.Range(-5,5);
         float y = Random.Range(-5,4);
