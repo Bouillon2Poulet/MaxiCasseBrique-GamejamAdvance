@@ -11,7 +11,6 @@ GetComponent<SpriteRenderer>().color = Color.blue;
 }
 
 private void OnMouseEnter() {
-// Debug.Log("enter");
 // cloner le Material du SpriteRenderer pour éviter de modifier le Material du parent
 GetComponent<SpriteRenderer>().material = new Material(GetComponent<SpriteRenderer>().material);
 GetComponent<SpriteRenderer>().color = new Color(1f,0f,1f);
@@ -27,7 +26,6 @@ GetComponent<SpriteRenderer>().color = Color.blue;
     {
         if(Input.GetMouseButtonUp(0))
         {
-            // Debug.Log("click");
             Application.OpenURL("https://fr.wikihow.com/augmenter-son-quotient-intellectuel");
         }
     }

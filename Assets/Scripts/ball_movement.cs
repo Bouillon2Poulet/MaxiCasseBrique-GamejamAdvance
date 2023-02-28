@@ -61,7 +61,6 @@ public class ball_movement : MonoBehaviour
             piste=1;
             if(other.gameObject.GetComponent<brick>().hit_brick()==0){
                 piste=0;
-                Debug.Log(piste);
             }
         }
         
@@ -93,11 +92,9 @@ public class ball_movement : MonoBehaviour
             piste=1;
         }
         audioSource.clip=pistes[piste];
-        audioSource.Play();
-        Debug.Log(piste);
+        if(audioSource) audioSource.Play();
     }
     public void impulse_ball(){
-        Debug.Log("push");
         rb2d.velocity = new Vector2(Mathf.Cos(angle)*speed,Mathf.Sin(angle)*speed);
     }
 

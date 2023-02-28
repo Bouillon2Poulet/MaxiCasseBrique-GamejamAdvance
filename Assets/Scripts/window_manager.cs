@@ -26,25 +26,13 @@ public class window_manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("generate_random_window", 10.0f, 3f);
+        InvokeRepeating("generate_random_window", 5.0f, 3f);
 
 
         windows_on_screen = new List<GameObject>();
         logos_on_screen = new List<GameObject>();
 
         create_window(prefabs.casse_brique, Vector3.zero);
-
-        // myKeys = new List<KeyCode>();
-        // myKeys.Add(KeyCode.Alpha0);
-        // myKeys.Add(KeyCode.Alpha1);
-        // myKeys.Add(KeyCode.Alpha2);
-        // myKeys.Add(KeyCode.Alpha3);
-        // myKeys.Add(KeyCode.Alpha4);
-        // myKeys.Add(KeyCode.Alpha5);
-        // myKeys.Add(KeyCode.Alpha6);
-        // myKeys.Add(KeyCode.Alpha7);
-
-
     }
     // Update is called once per frame
     void Update()
@@ -120,6 +108,7 @@ public class window_manager : MonoBehaviour
 
     void generate_random_window() {
         brick_game_manager bgm = GetComponentInChildren<brick_game_manager>();
+        if(!bgm) return;
         if (bgm.actual_game_state != brick_game_manager.game_state.game) return;
 
         int type = (int) Random.Range(1, prefabs.GetNames(typeof(prefabs)).Length);
@@ -128,7 +117,6 @@ public class window_manager : MonoBehaviour
             type = (int) Random.Range(1, prefabs.GetNames(typeof(prefabs)).Length);
         }   // repull while u pull a second harambe
 
-        //Debug.Log(has_harambe);
 
         float x = Random.Range(-5,5);
         float y = Random.Range(-5,4);
@@ -141,10 +129,12 @@ public class window_manager : MonoBehaviour
         for (int i = 0; i< transform.childCount; i++)
         {
             GameObject go = transform.GetChild(i).gameObject;
-            if(go.name != "Brick_game(Clone)" && go.name !="start_pos_logos") Destroy(go);
+            if(go.name != "Brick_game(Clone)" && go.name !="start_pos_of_logos") Destroy(go);
         }
-        windows_on_screen.RemoveRange(1,windows_on_screen.Count-2);
-        logos_on_screen.RemoveRange(1,windows_on_screen.Count-2);
+        if(windows_on_screen.Count >= 2){
+            windows_on_screen.RemoveRange(1,windows_on_screen.Count-2);
+            logos_on_screen.RemoveRange(1,windows_on_screen.Count-2);
+        }
 
     }
 }

@@ -25,8 +25,6 @@ public class brick_game_manager : MonoBehaviour
 
     public GameObject game_over_menu;
 
-    public GameObject win_menu;
-
     private float time_pause_remaining;
     public Transform position_ball_UI;
     public float spacing_UI = 0.2f;
@@ -45,15 +43,14 @@ public class brick_game_manager : MonoBehaviour
 
         number_of_brick_initial = GetComponentsInChildren<brick>().Length;
         number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
+
         game_over_menu.SetActive(false);
-        win_menu.SetActive(false);
 
         init_nb_ball=nb_ball;
 
     }
     IEnumerator wait_to_launch(){
         yield return new WaitForSeconds(1f);
-        Debug.Log("lauch");
         actual_game_state = game_state.game;
         GetComponentInChildren<ball_movement>().impulse_ball();
 
@@ -61,15 +58,13 @@ public class brick_game_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log(actual_game_state + " // " + game_over_menu.GetComponentInChildren<SpriteRenderer>().sortingOrder) ;
+        Debug.Log(actual_game_state);
         number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
-        Debug.Log(number_of_brick_remaining);
         
 
-        if(number_of_brick_remaining == 0) {
-            is_pause = true;
-            actual_game_state = game_state.win;
-            win_menu.SetActive(true);
+        if(number_of_brick_remaining ==0) {
+            actual_game_state =game_state.win;
+            GetComponentInChildren<Canvas>().sortingOrder = 20;
         }
 
         switch(actual_game_state){
@@ -118,19 +113,12 @@ public class brick_game_manager : MonoBehaviour
                 break;
         }
 
-        // Debug.Log(nb_ball + " // " + liste_ball_to_draw.Count);
     }
 
 
     public void loose_ball(){
-        nb_ball--;
         audioSource.clip = balldead;
         audioSource.Play();
-
-        GameObject go_to_hide = liste_ball_to_draw[nb_ball];
-        go_to_hide.GetComponent<SpriteRenderer>().enabled = false;
-
-
 
         if (nb_ball ==0){
             GetComponentInChildren<ball_movement>().kill();
