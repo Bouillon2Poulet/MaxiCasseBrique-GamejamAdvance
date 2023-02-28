@@ -62,7 +62,10 @@ public class brick_game_manager : MonoBehaviour
         number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
         
 
-        if(number_of_brick_remaining ==0) actual_game_state = game_state.win;
+        if(number_of_brick_remaining ==0) {
+            actual_game_state =game_state.win;
+            GetComponentInChildren<Canvas>().sortingOrder = 20;
+        }
 
         switch(actual_game_state){
             case game_state.launch :

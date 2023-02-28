@@ -33,18 +33,6 @@ public class window_manager : MonoBehaviour
         logos_on_screen = new List<GameObject>();
 
         create_window(prefabs.casse_brique, Vector3.zero);
-
-        // myKeys = new List<KeyCode>();
-        // myKeys.Add(KeyCode.Alpha0);
-        // myKeys.Add(KeyCode.Alpha1);
-        // myKeys.Add(KeyCode.Alpha2);
-        // myKeys.Add(KeyCode.Alpha3);
-        // myKeys.Add(KeyCode.Alpha4);
-        // myKeys.Add(KeyCode.Alpha5);
-        // myKeys.Add(KeyCode.Alpha6);
-        // myKeys.Add(KeyCode.Alpha7);
-
-
     }
     // Update is called once per frame
     void Update()
@@ -120,6 +108,7 @@ public class window_manager : MonoBehaviour
 
     void generate_random_window() {
         brick_game_manager bgm = GetComponentInChildren<brick_game_manager>();
+        if(!bgm) return;
         if (bgm.actual_game_state != brick_game_manager.game_state.game) return;
 
         int type = (int) Random.Range(1, prefabs.GetNames(typeof(prefabs)).Length);
