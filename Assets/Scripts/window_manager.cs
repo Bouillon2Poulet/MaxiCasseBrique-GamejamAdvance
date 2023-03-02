@@ -37,17 +37,14 @@ public class window_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        check_logo_remove();
+        if(Input.GetKeyDown(KeyCode.Escape)) Application.Quit();
 
-        // foreach (KeyCode key in myKeys)
-        //     {
-        //         if (Input.GetKeyDown(key))
-        //         {
-        //             if (key <= KeyCode.Alpha9 && key >= KeyCode.Alpha0) {
-        //                 create_window((prefabs)(key-48), Vector3.zero);
-        //             }
-        //         }
-        //     }
+        check_logo_remove();
+        if (GetComponentInChildren<brick_game_manager>().actual_game_state ==brick_game_manager.game_state.win)
+        {
+            destroy_all_popup();
+        }
+
 
         if (windows_on_screen[0] == null) {
             windows_on_screen[0] = Instantiate(get_window_prefab(prefabs.casse_brique), Vector3.zero, new Quaternion(0f,0f,0f,0f));

@@ -25,6 +25,8 @@ public class brick_game_manager : MonoBehaviour
 
     public GameObject game_over_menu;
 
+    public GameObject win_menu;
+
     private float time_pause_remaining;
     public Transform position_ball_UI;
     public float spacing_UI = 0.2f;
@@ -58,13 +60,11 @@ public class brick_game_manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(actual_game_state);
         number_of_brick_remaining = GetComponentsInChildren<brick>().Length;
         
 
         if(number_of_brick_remaining ==0) {
             actual_game_state =game_state.win;
-            GetComponentInChildren<Canvas>().sortingOrder = 20;
         }
 
         switch(actual_game_state){
@@ -100,9 +100,16 @@ public class brick_game_manager : MonoBehaviour
                     GetComponentInChildren<ball_movement>().impulse_ball();
 
                 }
-
-
                 break;
+
+
+            case game_state.win :
+                is_pause = true;
+                win_menu.GetComponentInChildren<Canvas>().sortingOrder = 23;
+                win_menu.GetComponentInChildren<SpriteRenderer>().sortingOrder = 22;
+                break;
+
+
 
             case game_state.game_over :
                 is_pause = true;
