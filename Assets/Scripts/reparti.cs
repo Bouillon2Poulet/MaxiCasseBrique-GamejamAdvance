@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class reparti : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class reparti : MonoBehaviour
 
     IEnumerator restartGame(){
         yield return new WaitForSeconds(1f);
+        string actual_scene_name = SceneManager.GetActiveScene().name;
+        SceneManager.LoadScene(actual_scene_name);
         Destroy(GetComponentInParent<brick_game_manager>().gameObject);
     }
 }
