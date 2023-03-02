@@ -52,6 +52,7 @@ public class window_manager : MonoBehaviour
 
        
 
+        has_harambe = GetComponentInChildren<harambe_game>() !=null;
         
     }
 

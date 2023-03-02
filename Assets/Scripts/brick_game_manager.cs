@@ -77,12 +77,12 @@ public class brick_game_manager : MonoBehaviour
 
                 if (!level2 && number_of_brick_remaining <= 2*number_of_brick_initial/3){
                     GetComponentInParent<window_manager>().CancelInvoke();
-                    GetComponentInParent<window_manager>().InvokeRepeating("generate_random_window", 0f, 2.5f);
+                    GetComponentInParent<window_manager>().InvokeRepeating("generate_random_window", 0f, 2f);
                     level2 = true;
                 }
                 if (level2 && !level3 && number_of_brick_remaining <= number_of_brick_initial/3){
                     GetComponentInParent<window_manager>().CancelInvoke();
-                    GetComponentInParent<window_manager>().InvokeRepeating("generate_random_window", 0f, 2f);
+                    GetComponentInParent<window_manager>().InvokeRepeating("generate_random_window", 0f, 1.5f);
                     level3 = true;
                 }
                 break;
